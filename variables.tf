@@ -2,7 +2,7 @@ variable "cidr" {
   type        = string
   description = "CIDR block of the VPC"
   validation {
-    condition     = 16 >= element(split("/", var.cidr), length(split("/", var.cidr)) - 1) && 28 >= element(split("/", var.cidr), length(split("/", var.cidr)) - 1)
+    condition     = 16 <= element(split("/", var.cidr), length(split("/", var.cidr)) - 1) && 28 >= element(split("/", var.cidr), length(split("/", var.cidr)) - 1)
     error_message = "The VPC prefix must be between /16 and /28 as per https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html."
   }
 }
